@@ -15,7 +15,6 @@ function App() {
       </div>
     ) : (
       <div className="container mx-auto p-8">
-        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">ISESASS</h1>
         <LoginPage
           user={user}
           setUser={setUser}
