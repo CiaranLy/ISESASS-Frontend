@@ -38,13 +38,7 @@ export default function RegisterComponent({
         try {
             const response = await login(email, password);
             if (response.message === "Login successful") {
-                const userData = {
-                    email: response.user.email,
-                    name: response.user.name,
-                    phone: response.user.phone,
-                    password: response.user.password,
-                };
-                setUser(userData);
+                setUser(response.user);
                 setIsLoggedIn(true);
             } else {
                 setMissingFieldsText('Login failed');
