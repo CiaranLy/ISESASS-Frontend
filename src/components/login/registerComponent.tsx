@@ -46,8 +46,7 @@ export default function RegisterComponent({
                 };
                 setUser(userData);
                 setIsLoggedIn(true);
-            }
-            else {
+            } else {
                 setMissingFieldsText('Login failed');
                 return;
             }
