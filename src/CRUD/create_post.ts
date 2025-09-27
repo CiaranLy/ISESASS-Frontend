@@ -10,7 +10,7 @@ export const createPost = async (post: {posterId: number, price: number, semeste
     });
     const data = await response.json();
     if (data.status !== 200) {
-        console.log(data.status, data.error);
+        console.log(data);
     }
     return data.status;
 }

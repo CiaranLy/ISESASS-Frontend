@@ -1,7 +1,51 @@
-export default function LoginPage() {
+import { useState } from "react";
+import { login } from "../CRUD/login";
+import { User } from "../Types/User";
+import RegisterComponent from "../components/login/registerComponent";
+import LoginComponent from "../components/login/loginComponent";
+
+export interface LoginPageProps {
+    setUser: (user: User) => void;
+    setIsLoggedIn: (isLoggedIn: boolean) => void;
+}
+
+export default function LoginPage({
+    setUser,
+    setIsLoggedIn,
+}: LoginPageProps) {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [needsRegister, setNeedsRegister] = useState<boolean>(false);
+    
     return (
+        <>
+        {needsRegister ? (
+            <RegisterComponent 
+                email={email}
+                password={password}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+            />
+        ) : (
         <div>
-            <h1>this is the login page</h1>
+            <LoginComponent 
+                email={email}
+                password={password}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+            />
+        </div>)}
+        <div>
+            {needsRegister ? (
+                <button onClick={() => setNeedsRegister(false)}>Login</button>
+            ) : (
+                <button onClick={() => setNeedsRegister(true)}>Register</button>
+            )}
         </div>
+        </>
     )
 }

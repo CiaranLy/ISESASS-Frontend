@@ -8,7 +8,7 @@ export const login = async (email: string, password: string) => {
 
     const data = await response.json();
     if (data.status !== 200) {
-        console.log(data.status, data.message);
+        console.log(data);
     }
     return data
 }
