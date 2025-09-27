@@ -1,1 +1,1 @@
-export const serverPath = "https://isesass-backend-h7wpngcvw-ciaranlys-projects.vercel.app";
+export const serverPath = process.env.REACT_APP_API_URL;
