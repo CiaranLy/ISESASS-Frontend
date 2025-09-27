@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { login } from "../CRUD/login";
 import { User } from "../Types/User";
 import RegisterComponent from "../components/login/registerComponent";
 import LoginComponent from "../components/login/loginComponent";
 
 export interface LoginPageProps {
+    user: User | null;
     setUser: (user: User) => void;
     setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
 
 export default function LoginPage({
+    user,
     setUser,
     setIsLoggedIn,
 }: LoginPageProps) {
