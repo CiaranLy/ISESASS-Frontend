@@ -56,7 +56,7 @@ export default function RegisterComponent({
             return;
         }
     }
-{
+
     return (
         <div>
             <h1>this is the register page</h1>
@@ -88,5 +88,4 @@ export default function RegisterComponent({
             <button onClick={handleRegister}>Sign up</button>
         </div>
     )
-}
 }
