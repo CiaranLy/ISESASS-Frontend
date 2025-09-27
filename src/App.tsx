@@ -5,6 +5,7 @@ function App() {
     <div>
       <h1>ISESASS</h1>
       <p>Immersive Software Engineering Student Accommodation Sharing Site</p>
+      <p>now hosted on Vercel</p>
     </div>
   );
 }
