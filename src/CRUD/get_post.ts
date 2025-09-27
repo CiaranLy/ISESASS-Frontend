@@ -1,7 +1,7 @@
-import { serverPath } from "../constants";
+import { config } from "../config";
 
 export const getPost = async () => {
-    const response = await fetch(`${serverPath}/get_posts`, {
+    const response = await fetch(`${config.serverPath}/get_posts`, {
         method: 'GET',
     });
     const data = await response.json();

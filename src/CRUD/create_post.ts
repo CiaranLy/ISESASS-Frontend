@@ -1,7 +1,7 @@
-import { serverPath } from "../constants";
+import { config } from "../config";
 
 export const createPost = async (post: {posterId: number, price: number, semester: string, bed: string, bathroom: string, ensuite: boolean, roommates: number, notes: string, line_1: string, line_2: string, town: string, city: string, county: string, eircode: string|null}) => {
-    const response = await fetch(`${serverPath}/posts`, {
+    const response = await fetch(`${config.serverPath}/posts`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

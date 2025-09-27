@@ -1,7 +1,7 @@
-import { serverPath } from "../constants";
+import { config } from "../config";
 
 export const createUser = async (user: {email: string, name: string, password: string, phone: string}) => {
-    const response = await fetch(`${serverPath}/users`, {
+    const response = await fetch(`${config.serverPath}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

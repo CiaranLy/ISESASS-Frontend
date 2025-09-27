@@ -1,7 +1,7 @@
-import { serverPath } from "../constants";
+import { config } from "../config";
 
 export const deleteUser = async (userId: number) => {
-    const response = await fetch(`${serverPath}/users`, {
+    const response = await fetch(`${config.serverPath}/users`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
