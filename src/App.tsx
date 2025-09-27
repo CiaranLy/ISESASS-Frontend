@@ -8,7 +8,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   return (
     <div className="min-h-screen bg-gray-100">
-      <BannerComponent user={user} />
+      <BannerComponent 
+        user={user}
+        setUser={setUser}
+        setIsLoggedIn={setIsLoggedIn}
+      />
     {isLoggedIn ? (
       <div className="container mx-auto p-8">
         {/* TODO: Add the main page here */}
