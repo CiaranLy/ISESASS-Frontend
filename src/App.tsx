@@ -11,6 +11,7 @@ function App() {
       <BannerComponent user={user} />
     {isLoggedIn ? (
       <div className="container mx-auto p-8">
+        {/* TODO: Add the main page here */}
       </div>
     ) : (
       <div className="container mx-auto p-8">
