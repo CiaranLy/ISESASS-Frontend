@@ -9,9 +9,10 @@ export const validateRoomDetails = ({
     bed,
     setBedErrorText,
 }: ValidateRoomDetailsProps) => {
+    let returnValue = true;
     if (!validateBed({ bed, setBedErrorText })) {
-        return false;
+        returnValue = false;
     }
 
-    return true;
+    return returnValue;
 }

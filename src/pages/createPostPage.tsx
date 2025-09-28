@@ -33,7 +33,7 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
 
         validateRoomDetails({ 
             bed,
-            bedErrorText,
+            setBedErrorText,
         });
     }
 

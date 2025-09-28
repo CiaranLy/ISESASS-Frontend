@@ -14,12 +14,13 @@ export const validatePricingAndTiming = ({
     setPriceErrorText, 
     setSemesterErrorText 
 }: ValidatePricingAndTimingProps) => {
+    let returnValue = true;
     if (!validatePricing({ pricePerMonth, setPriceErrorText })) {
-        return false;
+        returnValue = false;
     }
 
     if (!validateTiming({ semester, setSemesterErrorText })) {
-        return false;
+        returnValue = false;
     }
-    return true;
+    return returnValue;
 }
