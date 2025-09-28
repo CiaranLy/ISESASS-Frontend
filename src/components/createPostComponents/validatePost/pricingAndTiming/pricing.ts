@@ -1,4 +1,12 @@
-export const validatePricing = (pricePerMonth: string, setPriceErrorText: (priceErrorText: string) => void) => {
+export interface ValidatePricingProps {
+    pricePerMonth: string;
+    setPriceErrorText: (priceErrorText: string) => void;
+}
+
+export const validatePricing = ({
+    pricePerMonth,
+    setPriceErrorText,
+}: ValidatePricingProps) => {
     try {
         if (parseInt(pricePerMonth) === 0) {
             setPriceErrorText("Price per month is required");

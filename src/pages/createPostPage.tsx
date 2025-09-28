@@ -1,6 +1,8 @@
 import { useState, } from "react";
 import PricingAndTiming from "../components/createPostComponents/pricingAndTiming";
 import { validatePricingAndTiming } from "../components/createPostComponents/validatePost/validatePricingAndTiming";
+import RoomDetails from "../components/createPostComponents/roomDetails";
+import { validateRoomDetails } from "../components/createPostComponents/validatePost/validateRoomDetails";
 
 export interface CreatePostPageProps {
     setAddPost: (addPost: boolean) => void;
@@ -11,6 +13,15 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
     const [priceErrorText, setPriceErrorText] = useState<string>("");
     const [semester, setSemester] = useState<string>("");
     const [semesterErrorText, setSemesterErrorText] = useState<string>("");
+
+    const [bed, setBed] = useState<string>("");
+    const [bedErrorText, setBedErrorText] = useState<string>("");
+    const [bathroom, setBathroom] = useState<string>("");
+    const [bathroomErrorText, setBathroomErrorText] = useState<string>("");
+    const [ensuite, setEnsuite] = useState<boolean>(false);
+    const [ensuiteErrorText, setEnsuiteErrorText] = useState<string>("");
+    const [roommates, setRoommates] = useState<string>("");
+    const [roommatesErrorText, setRoommatesErrorText] = useState<string>("");
     
     const validtePost = () => {
         validatePricingAndTiming({ 
@@ -18,6 +29,11 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
             semester, 
             setPriceErrorText, 
             setSemesterErrorText 
+        });
+
+        validateRoomDetails({ 
+            bed,
+            bedErrorText,
         });
     }
 
@@ -35,11 +51,18 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                         pricePerMonth={pricePerMonth}
                         setPricePerMonth={setPricePerMonth} 
                         priceErrorText={priceErrorText}
-                        setPriceErrorText={setPriceErrorText}
                         semester={semester}
                         setSemester={setSemester}
                         semesterErrorText={semesterErrorText}
-                        setSemesterErrorText={setSemesterErrorText}
+                    />
+                    <div className="flex-1"></div>
+                </div>
+                <div className="w-full flex">
+                    <div className="flex-1"></div>
+                    <RoomDetails 
+                        bed={bed}
+                        setBed={setBed}
+                        bedErrorText={bedErrorText}
                     />
                     <div className="flex-1"></div>
                 </div>

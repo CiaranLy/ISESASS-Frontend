@@ -5,19 +5,15 @@ export interface PricingAndTimingProps {
     semesterErrorText: string;
     setPricePerMonth: (pricePerMonth: string) => void;
     setSemester: (semester: string) => void;
-    setPriceErrorText: (priceErrorText: string) => void;
-    setSemesterErrorText: (semesterErrorText: string) => void;
 }
 
 export default function PricingAndTiming({ 
     pricePerMonth, 
     setPricePerMonth,
     priceErrorText,
-    setPriceErrorText,
     semester, 
     setSemester,
     semesterErrorText,
-    setSemesterErrorText
 }: PricingAndTimingProps) {
     
     return (
