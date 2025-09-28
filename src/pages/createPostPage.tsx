@@ -3,6 +3,7 @@ import PricingAndTiming from "../components/createPostComponents/pricingAndTimin
 import { validatePricingAndTiming } from "../components/createPostComponents/validatePost/validatePricingAndTiming";
 import RoomDetails from "../components/createPostComponents/roomDetails";
 import { validateRoomDetails } from "../components/createPostComponents/validatePost/validateRoomDetails";
+import AddressDetails from "../components/createPostComponents/addressDetails";
 
 export interface CreatePostPageProps {
     setAddPost: (addPost: boolean) => void;
@@ -31,6 +32,8 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
     const [townErrorText, setTownErrorText] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [cityErrorText, setCityErrorText] = useState<string>("");
+    const [county, setCounty] = useState<string>("");
+    const [countyErrorText, setCountyErrorText] = useState<string>("");
     const [postcode, setPostcode] = useState<string>("");
     const [postcodeErrorText, setPostcodeErrorText] = useState<string>("")|| null;
     
@@ -94,6 +97,30 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                         roommates={roommates}
                         setRoommates={setRoommates}
                         roommatesErrorText={roommatesErrorText}
+                    />
+                    <div className="flex-1"></div>
+                </div>
+                <div className="w-full flex">
+                    <div className="flex-1"></div>
+                    <AddressDetails
+                        line_1={line_1}
+                        setLine_1={setLine_1}
+                        line_1ErrorText={line_1ErrorText}
+                        line_2={line_2}
+                        setLine_2={setLine_2}
+                        line_2ErrorText={line_2ErrorText}
+                        town={town}
+                        setTown={setTown}
+                        townErrorText={townErrorText}
+                        city={city}
+                        setCity={setCity}
+                        cityErrorText={cityErrorText}
+                        county={county}
+                        setCounty={setCounty}
+                        countyErrorText={countyErrorText}
+                        postcode={postcode}
+                        setPostcode={setPostcode}
+                        postcodeErrorText={postcodeErrorText}
                     />
                     <div className="flex-1"></div>
                 </div>
