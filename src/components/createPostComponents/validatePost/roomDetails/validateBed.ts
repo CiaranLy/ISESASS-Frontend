@@ -7,19 +7,10 @@ export const validateBed = ({
     bed,
     setBedErrorText,
 }: ValidateBedProps) => {
-    try {
-        if (bed.length === 0) {
-            setBedErrorText("Bed is required");
-            return false;
-        }
-        if (parseInt(bed) <= 0) {
-            setBedErrorText("Bed must be a positive number");
-            return false;
-        }
-    } catch (error) {
-        setBedErrorText("Bed must be a number");
+    if (bed === "") {
+        setBedErrorText("Bed is required");
         return false;
     }
-
+    setBedErrorText("");
     return true;
 }

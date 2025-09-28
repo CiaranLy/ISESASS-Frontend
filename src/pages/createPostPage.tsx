@@ -19,24 +19,44 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
     const [bathroom, setBathroom] = useState<string>("");
     const [bathroomErrorText, setBathroomErrorText] = useState<string>("");
     const [ensuite, setEnsuite] = useState<boolean>(false);
-    const [ensuiteErrorText, setEnsuiteErrorText] = useState<string>("");
-    const [roommates, setRoommates] = useState<string>("");
+    const [ensuiteErrorText] = useState<string>("");
+    const [roommates, setRoommates] = useState<string>("0");
     const [roommatesErrorText, setRoommatesErrorText] = useState<string>("");
+
+    const [line_1, setLine_1] = useState<string>("");
+    const [line_1ErrorText, setLine_1ErrorText] = useState<string>("");
+    const [line_2, setLine_2] = useState<string>("");
+    const [line_2ErrorText, setLine_2ErrorText] = useState<string>("");
+    const [town, setTown] = useState<string>("");
+    const [townErrorText, setTownErrorText] = useState<string>("");
+    const [city, setCity] = useState<string>("");
+    const [cityErrorText, setCityErrorText] = useState<string>("");
+    const [postcode, setPostcode] = useState<string>("");
+    const [postcodeErrorText, setPostcodeErrorText] = useState<string>("")|| null;
     
     const validtePost = () => {
-        validatePricingAndTiming({ 
+        let returnValue = true;
+        if (!validatePricingAndTiming({ 
             pricePerMonth, 
             semester, 
             setPriceErrorText, 
             setSemesterErrorText 
-        });
+        })) {
+            returnValue = false;
+        }
 
-        validateRoomDetails({ 
-            bed,
-            setBedErrorText,
-            bathroom,
-            setBathroomErrorText,
-        });
+        if (!validateRoomDetails({ 
+            bed, 
+            setBedErrorText, 
+            bathroom, 
+            setBathroomErrorText, 
+            roommates, 
+            setRoommatesErrorText, 
+        })) {
+            returnValue = false;
+        }
+
+        return returnValue;
     }
 
     return (
@@ -68,6 +88,12 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                         bathroom={bathroom}
                         setBathroom={setBathroom}
                         bathroomErrorText={bathroomErrorText}
+                        ensuite={ensuite}
+                        setEnsuite={setEnsuite}
+                        ensuiteErrorText={ensuiteErrorText} 
+                        roommates={roommates}
+                        setRoommates={setRoommates}
+                        roommatesErrorText={roommatesErrorText}
                     />
                     <div className="flex-1"></div>
                 </div>

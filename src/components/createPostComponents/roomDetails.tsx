@@ -5,6 +5,12 @@ interface RoomDetailsProps {
     bathroom: string;
     setBathroom: (bathroom: string) => void;
     bathroomErrorText: string;
+    ensuite: boolean;
+    setEnsuite: (ensuite: boolean) => void;
+    ensuiteErrorText: string;
+    roommates: string;
+    setRoommates: (roommates: string) => void;
+    roommatesErrorText: string;
 }
 
 export default function RoomDetails({ 
@@ -14,6 +20,12 @@ export default function RoomDetails({
     bathroom,
     setBathroom,
     bathroomErrorText,
+    ensuite,
+    setEnsuite,
+    ensuiteErrorText,
+    roommates,
+    setRoommates,
+    roommatesErrorText,
 }: RoomDetailsProps) {
     return (
         <div className="flex-1 flex flex-col gap-2 w-full">
@@ -41,16 +53,22 @@ export default function RoomDetails({
                     <p className="text-sm text-red-500">{bathroomErrorText}</p>
                 <h2 className="text-sm font-bold">Ensuite</h2>
                     <input 
-                        type="text" 
-                        placeholder="Ensuite" 
+                        type="checkbox" 
                         className="w-full rounded-md p-4 bg-gray-200" 
-                    />
+                        checked={ensuite}
+                        onChange={(e) => setEnsuite(e.target.checked)}
+                    >
+                    </input> {/*make this a toggle button with an orange background when checked*/}
+                    <p className="text-sm text-red-500">{ensuiteErrorText}</p>
                 <h2 className="text-sm font-bold">Roommates</h2>
                     <input 
                         type="text" 
                         placeholder="Roommates" 
                         className="w-full rounded-md p-4 bg-gray-200" 
+                        value={roommates}
+                        onChange={(e) => setRoommates(e.target.value)}
                     />
+                    <p className="text-sm text-red-500">{roommatesErrorText}</p>
             </div>
         </div>
     );
