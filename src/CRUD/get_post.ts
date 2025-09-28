@@ -5,8 +5,5 @@ export const getPost = async () => {
         method: 'GET',
     });
     const data = await response.json();
-    if (data.status !== 200) {
-        console.log(data);
-    }
     return data;
 }

@@ -9,8 +9,5 @@ export const createPost = async (post: {posterId: number, price: number, semeste
         body: JSON.stringify(post),
     });
     const data = await response.json();
-    if (data.status !== 200) {
-        console.log(data);
-    }
     return data.status;
 }

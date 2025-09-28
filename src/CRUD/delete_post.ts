@@ -9,8 +9,5 @@ export const deletePost = async (postId: number) => {
         body: JSON.stringify({postId: postId}),
     });
     const data = await response.json();
-    if (data.status !== 200) {
-        console.log(data);
-    }
     return data;
 }

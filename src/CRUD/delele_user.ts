@@ -9,8 +9,5 @@ export const deleteUser = async (userId: number) => {
         body: JSON.stringify({userId: userId}),
     });
     const data = await response.json();
-    if (data.status !== 200) {
-        console.log(data);
-    }
     return data.status;
 }

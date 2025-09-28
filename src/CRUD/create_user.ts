@@ -9,8 +9,5 @@ export const createUser = async (user: {email: string, name: string, password: s
         body: JSON.stringify(user),
     });
     const data = await response.json();
-    if (data.status !== 200) {
-        console.log(data);
-    }
     return data.status;
 }
