@@ -4,6 +4,7 @@ import { validatePricingAndTiming } from "../components/createPostComponents/val
 import RoomDetails from "../components/createPostComponents/roomDetails";
 import { validateRoomDetails } from "../components/createPostComponents/validatePost/validateRoomDetails";
 import AddressDetails from "../components/createPostComponents/addressDetails";
+import { validateAddressDetails } from "../components/createPostComponents/validatePost/validateAddressDetails";
 
 export interface CreatePostPageProps {
     setAddPost: (addPost: boolean) => void;
@@ -25,11 +26,10 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
     const [roommatesErrorText, setRoommatesErrorText] = useState<string>("");
 
     const [line_1, setLine_1] = useState<string>("");
-    const [line_1ErrorText, setLine_1ErrorText] = useState<string>("");
     const [line_2, setLine_2] = useState<string>("");
     const [line_2ErrorText, setLine_2ErrorText] = useState<string>("");
-    const [town, setTown] = useState<string>("");
-    const [townErrorText, setTownErrorText] = useState<string>("");
+    const [line_3, setLine_3] = useState<string>("");
+    const [line_3ErrorText, setLine_3ErrorText] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [cityErrorText, setCityErrorText] = useState<string>("");
     const [county, setCounty] = useState<string>("");
@@ -55,6 +55,22 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
             setBathroomErrorText, 
             roommates, 
             setRoommatesErrorText, 
+        })) {
+            returnValue = false;
+        }
+
+        if (!validateAddressDetails({ 
+            line_2,
+            setLine_2ErrorText,
+            line_3,
+            setLine_3ErrorText,
+            city,
+            setCityErrorText,
+            county,
+            setCountyErrorText,
+            postcode,
+            setPostcodeErrorText,
+            setPostcode,
         })) {
             returnValue = false;
         }
@@ -105,13 +121,12 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                     <AddressDetails
                         line_1={line_1}
                         setLine_1={setLine_1}
-                        line_1ErrorText={line_1ErrorText}
                         line_2={line_2}
                         setLine_2={setLine_2}
                         line_2ErrorText={line_2ErrorText}
-                        town={town}
-                        setTown={setTown}
-                        townErrorText={townErrorText}
+                        line_3={line_3}
+                        setLine_3={setLine_3}
+                        line_3ErrorText={line_3ErrorText}                        
                         city={city}
                         setCity={setCity}
                         cityErrorText={cityErrorText}
