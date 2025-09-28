@@ -2,12 +2,18 @@ interface RoomDetailsProps {
     bed: string;
     setBed: (bed: string) => void;
     bedErrorText: string;
+    bathroom: string;
+    setBathroom: (bathroom: string) => void;
+    bathroomErrorText: string;
 }
 
 export default function RoomDetails({ 
     bed, 
     setBed, 
     bedErrorText,
+    bathroom,
+    setBathroom,
+    bathroomErrorText,
 }: RoomDetailsProps) {
     return (
         <div className="flex-1 flex flex-col gap-2 w-full">
@@ -23,11 +29,16 @@ export default function RoomDetails({
                     />
                     <p className="text-sm text-red-500">{bedErrorText}</p>
                 <h2 className="text-sm font-bold">Bathroom</h2>
-                    <input 
-                        type="text" 
-                        placeholder="Bathroom" 
+                    <select 
                         className="w-full rounded-md p-4 bg-gray-200" 
-                    />
+                        value={bathroom}
+                        onChange={(e) => setBathroom(e.target.value)}
+                    >
+                        <option value="" className="text-gray-500">Choose bathroom type</option>
+                        <option value="2">Shared</option>
+                        <option value="3">Personal</option>
+                    </select>
+                    <p className="text-sm text-red-500">{bathroomErrorText}</p>
                 <h2 className="text-sm font-bold">Ensuite</h2>
                     <input 
                         type="text" 

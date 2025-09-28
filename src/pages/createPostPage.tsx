@@ -34,6 +34,8 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
         validateRoomDetails({ 
             bed,
             setBedErrorText,
+            bathroom,
+            setBathroomErrorText,
         });
     }
 
@@ -63,6 +65,9 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                         bed={bed}
                         setBed={setBed}
                         bedErrorText={bedErrorText}
+                        bathroom={bathroom}
+                        setBathroom={setBathroom}
+                        bathroomErrorText={bathroomErrorText}
                     />
                     <div className="flex-1"></div>
                 </div>
