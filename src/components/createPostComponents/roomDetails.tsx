@@ -16,7 +16,7 @@ export default function RoomDetails({
                 <h2 className="text-sm font-bold">Bed</h2>
                     <input 
                         type="text" 
-                        placeholder="Bed" 
+                        placeholder="eg. single, double etc." 
                         className="w-full rounded-md p-4 bg-gray-200" 
                         value={bed}
                         onChange={(e) => setBed(e.target.value)}
