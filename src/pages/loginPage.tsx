@@ -4,13 +4,11 @@ import RegisterComponent from "../components/login/registerComponent";
 import LoginComponent from "../components/login/loginComponent";
 
 export interface LoginPageProps {
-    user: User | null;
     setUser: (user: User) => void;
     setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
 
 export default function LoginPage({
-    user,
     setUser,
     setIsLoggedIn,
 }: LoginPageProps) {
@@ -20,32 +18,43 @@ export default function LoginPage({
     
     return (
         <>
-        {needsRegister ? (
-            <RegisterComponent 
-                email={email}
-                password={password}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                setUser={setUser}
-                setIsLoggedIn={setIsLoggedIn}
-            />
-        ) : (
-        <div>
-            <LoginComponent 
-                email={email}
-                password={password}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                setUser={setUser}
-                setIsLoggedIn={setIsLoggedIn}
-            />
-        </div>)}
-        <div>
+        <div className="flex flex-col items-center justify-center bg-white rounded-md p-8">
             {needsRegister ? (
-                <button onClick={() => setNeedsRegister(false)}>Login</button>
+                <RegisterComponent 
+                    email={email}
+                    password={password}
+                    setEmail={setEmail}
+                    setPassword={setPassword}
+                    setUser={setUser}
+                    setIsLoggedIn={setIsLoggedIn}
+                />
             ) : (
-                <button onClick={() => setNeedsRegister(true)}>Register</button>
+                <LoginComponent 
+                    email={email}
+                    password={password}
+                    setEmail={setEmail}
+                    setPassword={setPassword}
+                    setUser={setUser}
+                    setIsLoggedIn={setIsLoggedIn}
+                />
             )}
+            <div className="flex flex-col items-center justify-center">
+                {needsRegister ? (
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-md text-bold p-4" 
+                        onClick={() => setNeedsRegister(false)}
+                    >
+                        Already have an account? Login
+                    </button>
+                ) : (
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-md text-bold p-4" 
+                        onClick={() => setNeedsRegister(true)}
+                    >
+                        Don't have an account? Register
+                    </button>
+                )}
+            </div>
         </div>
         </>
     )

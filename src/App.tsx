@@ -34,7 +34,6 @@ export default function App() {
       ) : (
         <div className="container mx-auto p-8">
           <LoginPage
-            user={user}
             setUser={setUser}
             setIsLoggedIn={setIsLoggedIn}
           />
