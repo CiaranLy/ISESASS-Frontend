@@ -21,7 +21,10 @@ export default function App() {
       {isLoggedIn ? (
         addPost ? (
           <div className="container mx-auto p-8">
-            <CreatePostPage setAddPost={setAddPost} />
+            <CreatePostPage 
+              setAddPost={setAddPost}
+              user={user as User}
+            />
           </div>
         ) : (
         <div className="container mx-auto p-8">

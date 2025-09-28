@@ -10,8 +10,8 @@ export const validatePostCode = ({
     setPostcode 
 }: ValidatePostCodeProps) => {
     if (postcode.length === 0) {
-        setPostcodeErrorText("Postcode is required");
-        return false;
+        setPostcodeErrorText("");
+        return true;
     }
 
     const cleanPostcode = postcode.trim().toUpperCase();

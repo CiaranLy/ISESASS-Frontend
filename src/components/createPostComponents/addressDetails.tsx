@@ -18,6 +18,8 @@ export interface AddressDetailsProps {
     postcode: string;
     setPostcode: (postcode: string) => void;
     postcodeErrorText: string;
+    notes: string;
+    setNotes: (notes: string) => void;
 }
 
 export default function AddressDetails({
@@ -38,6 +40,8 @@ export default function AddressDetails({
     postcode,
     setPostcode,
     postcodeErrorText,
+    notes,
+    setNotes,
 }: AddressDetailsProps) {
     return (
         <div className="flex-1 flex flex-col gap-2 w-full">
@@ -99,6 +103,13 @@ export default function AddressDetails({
                         onChange={(e) => setPostcode(e.target.value)}
                     />
                     <p className="text-sm text-red-500">{postcodeErrorText}</p>
+                <h2 className="text-sm font-bold">Extra Notes</h2>
+                    <textarea 
+                        placeholder="Type here" 
+                        className="w-full rounded-md p-4 bg-gray-200 h-40" 
+                        value={notes} 
+                        onChange={(e) => setNotes(e.target.value)}
+                    />
             </div>
         </div>
     )

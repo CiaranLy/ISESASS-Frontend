@@ -5,12 +5,20 @@ import RoomDetails from "../components/createPostComponents/roomDetails";
 import { validateRoomDetails } from "../components/createPostComponents/validatePost/validateRoomDetails";
 import AddressDetails from "../components/createPostComponents/addressDetails";
 import { validateAddressDetails } from "../components/createPostComponents/validatePost/validateAddressDetails";
+import { createPost } from "../CRUD/create_post";
+import { User } from "../Types/User";
 
 export interface CreatePostPageProps {
     setAddPost: (addPost: boolean) => void;
+    user: User;
 }
 
-export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
+export default function CreatePostPage({ 
+    setAddPost,
+    user,
+}: CreatePostPageProps) {
+    const [postErrorText, setPostErrorText] = useState<string>("");
+
     const [pricePerMonth, setPricePerMonth] = useState<string>("0");
     const [priceErrorText, setPriceErrorText] = useState<string>("");
     const [semester, setSemester] = useState<string>("");
@@ -36,6 +44,7 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
     const [countyErrorText, setCountyErrorText] = useState<string>("");
     const [postcode, setPostcode] = useState<string>("");
     const [postcodeErrorText, setPostcodeErrorText] = useState<string>("")|| null;
+    const [notes, setNotes] = useState<string>("");
     
     const validtePost = () => {
         let returnValue = true;
@@ -76,6 +85,33 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
         }
 
         return returnValue;
+    }
+
+    const createPostFunction = async () => {
+        if(validtePost()) {
+            const response = await createPost({
+                posterId: user.id as number,
+                price: parseInt(pricePerMonth),
+                semester: semester,
+                bed: bed,
+                bathroom: bathroom,
+                ensuite: ensuite,
+                roommates: parseInt(roommates),
+                notes: notes,
+                line_1: line_1,
+                line_2: line_2,
+                line_3: line_3,
+                city: city,
+                county: county,
+                postcode: postcode,
+            });
+            if(response.status === 201) {
+                setPostErrorText("");
+                setAddPost(false);
+            } else {
+                setPostErrorText("Failed to create post, please try again");
+            }
+        }
     }
 
     return (
@@ -136,6 +172,8 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                         postcode={postcode}
                         setPostcode={setPostcode}
                         postcodeErrorText={postcodeErrorText}
+                        notes={notes}
+                        setNotes={setNotes}
                     />
                     <div className="flex-1"></div>
                 </div>
@@ -149,12 +187,14 @@ export default function CreatePostPage({ setAddPost }: CreatePostPageProps) {
                                 }}
                                 >Cancel</button>
                         </div>
-                        <div className="flex-1"></div>
+                        <div className="flex-1 justify-center items-center text-center flex bg-gray-200">
+                            <p className="text-red-500">{postErrorText}</p>
+                        </div>
                         <div className="flex flex-1 justify-end">
                             <button 
                                 className="bg-green-500 hover:bg-green-600 text-white rounded-md p-4"
                                 onClick={() => {
-                                    validtePost();
+                                    createPostFunction();
                                 }}
                             >+ Create Post</button>
                         </div>
