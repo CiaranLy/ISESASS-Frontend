@@ -1,6 +1,5 @@
 import { User } from "../Types/User";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-// Using regular button instead of Radix Button
 
 export interface BannerComponentProps {
     user: User | null;

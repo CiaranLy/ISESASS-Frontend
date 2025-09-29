@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { User } from './Types/User';
 import LoginPage from './pages/loginPage';
 import BannerComponent from './components/bannerComponent';
 import CreatePostPage from './pages/createPostPage';
+import ShowPostPage from './pages/showPostPage';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -28,7 +29,9 @@ export default function App() {
           </div>
         ) : (
         <div className="container mx-auto p-8">
-          {/* TODO: Add the main page here */}
+          <ShowPostPage 
+            user={user as User}
+          />
         </div>
         )
       ) : (

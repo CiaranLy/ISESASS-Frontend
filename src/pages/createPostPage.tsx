@@ -126,7 +126,6 @@ export default function CreatePostPage({
                 setAddPost(false);
             } else {
                 setPostErrorText("Failed to create post, please try again");
-                console.log(response.status);
             }
         }
     }
