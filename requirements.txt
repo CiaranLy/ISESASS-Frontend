@@ -1,0 +1,25 @@
+# ISESASS Frontend Setup Requirements
+# This file contains the essential setup steps for the project
+
+# 1. Node.js Requirements
+# - Node.js version 16.0.0 or higher
+# - npm version 8.0.0 or higher
+
+# 2. Environment Setup
+# Create .env.local file with:
+REACT_APP_API_URL="Contact teammate"
+
+# 3. Dependencies to install
+# Run: npm install
+# This will install all dependencies from package.json
+
+# 4. Start the development server
+# Run: npm start
+
+# 5. Access the application
+# Open: http://localhost:3000
+
+# Troubleshooting Commands:
+# Clear cache: rm -rf node_modules package-lock.json && npm install
+# Kill port: npx kill-port 3000
+# Check versions: node --version && npm --version
