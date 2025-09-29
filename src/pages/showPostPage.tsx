@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Post } from "../Types/Post";
 import { getPost } from "../CRUD/get_post";
 import { User } from "../Types/User";
@@ -15,7 +15,7 @@ export default function ShowPostPage({ user }: showPostPageProps) {
     const [postErrorText, setPostErrorText] = useState<string>("");
     const [viewUserPosts, setViewUserPosts] = useState<boolean>(false);
 
-    const gatherPosts = () => {
+    const gatherPosts = useCallback(() => {
         try {
             getPost().then((response) => {
                 const allPosts = response.posts;
@@ -27,11 +27,11 @@ export default function ShowPostPage({ user }: showPostPageProps) {
             setPosts([]);
             setUserPosts([]);
         }
-    };
+    }, [user.id]);
 
     useEffect(() => {
         gatherPosts();
-    }, []);
+    }, [gatherPosts]);
   
     return (
         <>
