@@ -7,7 +7,7 @@ export const validateTiming = ({
     semester,
     setSemesterErrorText,
 }: ValidateTimingProps) => {
-    if (semester === "Autumn" || semester === "Spring" || semester === "Summer") {
+    if (semester === "autumn" || semester === "spring" || semester === "summer") {
         setSemesterErrorText("");
         return true;
     }

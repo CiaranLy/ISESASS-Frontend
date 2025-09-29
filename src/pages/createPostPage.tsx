@@ -43,10 +43,10 @@ export default function CreatePostPage({
     const [county, setCounty] = useState<string>("");
     const [countyErrorText, setCountyErrorText] = useState<string>("");
     const [postcode, setPostcode] = useState<string>("");
-    const [postcodeErrorText, setPostcodeErrorText] = useState<string>("")|| null;
+    const [postcodeErrorText, setPostcodeErrorText] = useState<string>("");
     const [notes, setNotes] = useState<string>("");
     
-    const validtePost = () => {
+    const validatePost = () => {
         let returnValue = true;
         if (!validatePricingAndTiming({ 
             pricePerMonth, 
@@ -88,9 +88,8 @@ export default function CreatePostPage({
     }
 
     const createPostFunction = async () => {
-        if(validtePost()) {
-            const response = await createPost({
-                posterId: user.id as number,
+        console.log({
+            posterId: user.id,
                 price: parseInt(pricePerMonth),
                 semester: semester,
                 bed: bed,
@@ -103,13 +102,31 @@ export default function CreatePostPage({
                 line_3: line_3,
                 city: city,
                 county: county,
-                postcode: postcode,
+                eircode: postcode,                                                                                                                                                  
+        });
+        if(validatePost()) {                                                                                                    
+            const response = await createPost({
+                posterId: user.id as number,
+                price: parseInt(pricePerMonth),                                                                                                                                         
+                semester: semester,
+                bed: bed,
+                bathroom: bathroom,
+                ensuite: ensuite,
+                roommates: parseInt(roommates),
+                notes: notes,
+                line_1: line_1,
+                line_2: line_2,
+                line_3: line_3,
+                city: city,
+                county: county,
+                eircode: postcode,
             });
-            if(response.status === 201) {
+            if(response.ok) {
                 setPostErrorText("");
                 setAddPost(false);
             } else {
                 setPostErrorText("Failed to create post, please try again");
+                console.log(response.status);
             }
         }
     }

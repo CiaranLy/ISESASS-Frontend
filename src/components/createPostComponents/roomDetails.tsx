@@ -32,13 +32,15 @@ export default function RoomDetails({
             <h1 className="text-lg font-bold">Room Details</h1>
             <div className="flex flex-col gap-2">
                 <h2 className="text-sm font-bold">Bed</h2>
-                    <input 
-                        type="text" 
-                        placeholder="eg. single, double etc." 
+                    <select 
                         className="w-full rounded-md p-4 bg-gray-200" 
                         value={bed}
                         onChange={(e) => setBed(e.target.value)}
-                    />
+                    >
+                        <option value="" className="text-gray-500">Choose Bed</option>
+                        <option value="single">Single</option>
+                        <option value="double">Double</option>
+                    </select>
                     <p className="text-sm text-red-500">{bedErrorText}</p>
                 <h2 className="text-sm font-bold">Bathroom</h2>
                     <select 
@@ -47,8 +49,8 @@ export default function RoomDetails({
                         onChange={(e) => setBathroom(e.target.value)}
                     >
                         <option value="" className="text-gray-500">Choose bathroom type</option>
-                        <option value="2">Shared</option>
-                        <option value="3">Personal</option>
+                        <option value="shared">Shared</option>
+                        <option value="personal">Personal</option>                                                                                                                              
                     </select>
                     <p className="text-sm text-red-500">{bathroomErrorText}</p>
                 <h2 className="text-sm font-bold">Ensuite</h2>

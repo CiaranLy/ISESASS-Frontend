@@ -36,9 +36,9 @@ export default function PricingAndTiming({
                     onChange={(e) => setSemester(e.target.value as string)}
                 >
                     <option value="" className="text-gray-500">Choose semester</option>
-                    <option value="Autumn">Autumn</option>
-                    <option value="Spring">Spring</option>
-                    <option value="Summer">Summer</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
                 </select>
                 <p className="text-sm text-red-500">{semesterErrorText}</p>
             </div>

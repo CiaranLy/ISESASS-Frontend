@@ -15,7 +15,7 @@ export const createPost = async (
         line_3: string, 
         city: string, 
         county: string, 
-        postcode: string|null
+        eircode: string|null
     }) => {
     const response = await fetch(`${config.serverPath}/posts`, {
         method: 'POST',
@@ -25,5 +25,5 @@ export const createPost = async (
         body: JSON.stringify(post),
     });
     const data = await response.json();
-    return data.status;
-}
+    return data.status;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+}                                                                                                                                                                                                                                                                   

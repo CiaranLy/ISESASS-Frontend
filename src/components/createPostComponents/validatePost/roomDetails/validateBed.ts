@@ -11,6 +11,10 @@ export const validateBed = ({
         setBedErrorText("Bed is required");
         return false;
     }
+    if (bed !== "single" && bed !== "double") {
+        setBedErrorText("Bed must be either single or double");
+        return false;
+    }
     setBedErrorText("");
     return true;
 }

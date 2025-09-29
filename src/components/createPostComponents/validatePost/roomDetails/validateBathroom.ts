@@ -7,7 +7,7 @@ export const validateBathroom = ({
     bathroom,
     setBathroomErrorText,
 }: ValidateBathroomProps) => {
-    if (bathroom === "Shared" || bathroom === "Personal") {
+    if (bathroom === "shared" || bathroom === "personal") {
         setBathroomErrorText("");
         return true;
     }

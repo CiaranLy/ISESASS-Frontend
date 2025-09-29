@@ -13,7 +13,7 @@ export const validateRoommates = ({
             setRoommatesErrorText("Number of roommates is required");
             return false;
         }
-        if (roommatesNumber >= 0) {
+        if (roommatesNumber <= 0) {
             setRoommatesErrorText("Roommates must be a positive number");
             return false;
         }
