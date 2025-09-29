@@ -5,7 +5,10 @@
 # - Node.js version 16.0.0 or higher
 # - npm version 8.0.0 or higher
 
-# 2. Environment Setup
+# 2. Additional Tools (Optional)
+# - Vercel CLI for deployment: npm install -g vercel
+
+# 3. Environment Setup
 # Create .env.local file with:
 REACT_APP_API_URL="Contact teammate"
 
@@ -19,7 +22,16 @@ REACT_APP_API_URL="Contact teammate"
 # 5. Access the application
 # Open: http://localhost:3000
 
-# Troubleshooting Commands:
+# 4. Key Dependencies (Auto-installed with npm install)
+# - React 19.1.1
+# - TypeScript 4.9.5
+# - Tailwind CSS 3.4.17
+# - Radix UI components
+# - Testing libraries
+
+# 5. Troubleshooting Commands:
 # Clear cache: rm -rf node_modules package-lock.json && npm install
 # Kill port: npx kill-port 3000
 # Check versions: node --version && npm --version
+# Install Vercel CLI: npm install -g vercel
+# Deploy to Vercel: vercel --yes
