@@ -35,13 +35,11 @@ export default function ShowPostPage({ user }: showPostPageProps) {
   
     return (
         <>
-        <div className="flex flex-col items-center justify-center bg-white rounded-md p-8">
             <button onClick={() => setViewUserPosts(!viewUserPosts)}>View User Posts</button>
             {postErrorText && 
                 <h1 className="text-red-500">{postErrorText}</h1>}
             {viewUserPosts ? (
                 <>
-                <h1>User Posts</h1>
                 {userPosts.map((post) => (
                      <div key={post.id}>
                          <EPC 
@@ -52,7 +50,6 @@ export default function ShowPostPage({ user }: showPostPageProps) {
                 </>
             ) : (
                 <> 
-                <h1>Posts</h1>
                  {posts.map((post) => (
                  <div key={post.id}>
                      <PC 
@@ -62,7 +59,6 @@ export default function ShowPostPage({ user }: showPostPageProps) {
              ))}
             </>
             )}
-        </div>
         </>
     )
 }

@@ -9,10 +9,9 @@ export function PostComponent({
 }: PostComponentProps) {
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center bg-white rounded-md p-8 w-full mb-6">
             <div className="flex flex-col items-center justify-center">
-                <div className="bg-gray-800 text-white p-4 rounded-md">
-                    <h1 className="text-2xl font-bold">{post.location.line_1}</h1>
+            <h1 className="text-2xl font-bold">{post.location.line_1}</h1>
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <h1 className="text-lg">{post.location.line_2}</h1>
@@ -24,6 +23,5 @@ export function PostComponent({
                     <h1 className="text-lg">{post.location.city}</h1>
                 </div>
             </div>
-        </div>
     )
 }
