@@ -1,6 +1,6 @@
 export interface Post {
     id: number | null;
-    posterId: {
+    poster: {
         id: number | null;
         name: string | null;
         email: string | null;
