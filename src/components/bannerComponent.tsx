@@ -1,3 +1,4 @@
+import { Post } from "../Types/Post";
 import { User } from "../Types/User";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 
@@ -7,6 +8,7 @@ export interface BannerComponentProps {
     setIsLoggedIn: (isLoggedIn: boolean) => void;
     addPost: boolean;
     setAddPost: (addPost: boolean) => void;
+    updatePost: Post | null;
 }
 export default function BannerComponent({ 
     user,
@@ -14,31 +16,33 @@ export default function BannerComponent({
     setIsLoggedIn,
     addPost,
     setAddPost,
+    updatePost,
 }: BannerComponentProps) {
     return (
         <>
         <div className="bg-green-500 p-4 flex items-center">
             <div className="flex-1 flex justify-start">
-                {user && (!addPost ? (
-                    <div className="flex items-center gap-2 bg-white rounded-md p-2 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 border-0">
-                        <button 
-                            className="text-green-500 p-2 font-bold"
-                            onClick={() => setAddPost(true)}
-                            >+ Add Post
-                        </button>
-                    </div>
-                ) : (
-                    <div className="flex items-center gap-2 bg-green-500 rounded-md p-2 hover:bg-green-500 focus:bg-green-500 focus:outline-none focus:ring-0 border-0">
-                        <div 
-                            className="text-green-500 p-2 font-bold"
-                            >← Back
+                {user && !updatePost && 
+                    (!addPost ? (
+                        <div className="flex items-center gap-2 bg-white rounded-md p-2 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 border-0">
+                            <button 
+                                className="text-green-500 p-2 font-bold"
+                                onClick={() => setAddPost(true)}
+                                >+ Add Post
+                            </button>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="flex items-center gap-2 bg-green-500 rounded-md p-2 hover:bg-green-500 focus:bg-green-500 focus:outline-none focus:ring-0 border-0">
+                            <div 
+                                className="text-green-500 p-2 font-bold"
+                                >← Back
+                            </div>
+                        </div>
                 ))}
             </div>
             <h1 className="text-white text-2xl font-bold">ISESASS</h1>
             <div className="flex-1 flex justify-end">
-                {user && (
+                {user && !updatePost && (
                     !addPost && (
                         <DropdownMenu>
                             <DropdownMenuTrigger>

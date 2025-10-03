@@ -25,5 +25,5 @@ export const updatePost = async (
         },
         body: JSON.stringify(post),
     });
-    return response.status;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-}                                                                                                                                                                                                                                                                   
+    return response.status;
+};

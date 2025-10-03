@@ -21,6 +21,7 @@ export default function App() {
         setIsLoggedIn={setIsLoggedIn}
         addPost={addPost}
         setAddPost={setAddPost}
+        updatePost={updatePost}
       />
       {isLoggedIn ? ( 
         updatePost ? (
