@@ -8,9 +8,13 @@ import { deletePost } from "../CRUD/delete_post";
 
 export interface showPostPageProps {
     user: User;
+    setUpdatePost: (updatePost: Post | null) => void;
 }
 
-export default function ShowPostPage({ user }: showPostPageProps) {
+export default function ShowPostPage({ 
+    user, 
+    setUpdatePost 
+}: showPostPageProps) {
     const [posts, setPosts] = useState<Post[]>([]);
     const [userPosts, setUserPosts] = useState<Post[]>([]);
     const [postErrorText, setPostErrorText] = useState<string>("");
@@ -46,6 +50,10 @@ export default function ShowPostPage({ user }: showPostPageProps) {
             }
         });
     }, [gatherPosts]);
+
+    const handleEditPost = useCallback((post: Post) => {
+        setUpdatePost(post);
+    }, []);
   
     return (
         <>
@@ -59,11 +67,9 @@ export default function ShowPostPage({ user }: showPostPageProps) {
                          <EPC 
                             post={post}
                             onEdit={(post) => {
-                                console.log('Edit post:', post);
-                                // Add edit functionality here
+                                handleEditPost(post);
                             }}
                             onDelete={(post) => {
-                                console.log('Delete post:', post);
                                 handleDeletePost(post);
                             }}
                             deletePostErrorText={deletePostErrorText[post.id!]}

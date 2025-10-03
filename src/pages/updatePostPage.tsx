@@ -5,46 +5,49 @@ import RoomDetails from "../components/createPostComponents/roomDetails";
 import { validateRoomDetails } from "../components/createPostComponents/validatePost/validateRoomDetails";
 import AddressDetails from "../components/createPostComponents/addressDetails";
 import { validateAddressDetails } from "../components/createPostComponents/validatePost/validateAddressDetails";
-import { createPost } from "../CRUD/create_post";
 import { User } from "../Types/User";
+import { Post } from "../Types/Post";
+import { updatePost } from "../CRUD/update_posts";
 
-export interface CreatePostPageProps {
-    setAddPost: (addPost: boolean) => void;
+export interface UpdatePostPageProps {
+    setUpdatePost: (updatePost: Post | null) => void;
     user: User;
+    post: Post;
 }
 
-export default function CreatePostPage({ 
-    setAddPost,
+export default function UpdatePostPage({ 
+    setUpdatePost,
     user,
-}: CreatePostPageProps) {
+    post,
+}: UpdatePostPageProps) {
     const [postErrorText, setPostErrorText] = useState<string>("");
 
-    const [pricePerMonth, setPricePerMonth] = useState<string>("0");
+    const [pricePerMonth, setPricePerMonth] = useState<string>(post.price!.toString());
     const [priceErrorText, setPriceErrorText] = useState<string>("");
-    const [semester, setSemester] = useState<string>("");
+    const [semester, setSemester] = useState<string>(post.semester!);
     const [semesterErrorText, setSemesterErrorText] = useState<string>("");
 
-    const [bed, setBed] = useState<string>("");
+    const [bed, setBed] = useState<string>(post.bed!.toString());
     const [bedErrorText, setBedErrorText] = useState<string>("");
-    const [bathroom, setBathroom] = useState<string>("");
+    const [bathroom, setBathroom] = useState<string>(post.bathroom!.toString());
     const [bathroomErrorText, setBathroomErrorText] = useState<string>("");
-    const [ensuite, setEnsuite] = useState<boolean>(false);
+    const [ensuite, setEnsuite] = useState<boolean>(post.ensuite!);
     const [ensuiteErrorText] = useState<string>("");
-    const [roommates, setRoommates] = useState<string>("0");
+    const [roommates, setRoommates] = useState<string>(post.roommates!.toString());
     const [roommatesErrorText, setRoommatesErrorText] = useState<string>("");
 
-    const [line_1, setLine_1] = useState<string>("");
-    const [line_2, setLine_2] = useState<string>("");
+    const [line_1, setLine_1] = useState<string>(post.location.line_1!);
+    const [line_2, setLine_2] = useState<string>(post.location.line_2!);
     const [line_2ErrorText, setLine_2ErrorText] = useState<string>("");
-    const [line_3, setLine_3] = useState<string>("");
+    const [line_3, setLine_3] = useState<string>(post.location.line_3!);
     const [line_3ErrorText, setLine_3ErrorText] = useState<string>("");
-    const [city, setCity] = useState<string>("");
+    const [city, setCity] = useState<string>(post.location.city!);
     const [cityErrorText, setCityErrorText] = useState<string>("");
-    const [county, setCounty] = useState<string>("");
+    const [county, setCounty] = useState<string>(post.location.county!);
     const [countyErrorText, setCountyErrorText] = useState<string>("");
-    const [postcode, setPostcode] = useState<string>("");
+    const [postcode, setPostcode] = useState<string>(post.location.eircode!);
     const [postcodeErrorText, setPostcodeErrorText] = useState<string>("");
-    const [notes, setNotes] = useState<string>("");
+    const [notes, setNotes] = useState<string>(post.notes!);
     
     const validatePost = () => {
         let returnValue = true;
@@ -87,9 +90,10 @@ export default function CreatePostPage({
         return returnValue;
     }
 
-    const createPostFunction = async () => {
+    const updatePostFunction = async () => {
         if(validatePost()) {                                                                                                    
-            const response = await createPost({
+            const response = await updatePost({ 
+                id: post.id!,
                 posterId: user.id as number,
                 price: parseInt(pricePerMonth),                                                                                                                                         
                 semester: semester,
@@ -105,11 +109,11 @@ export default function CreatePostPage({
                 county: county,
                 eircode: postcode,
             });
-            if(response.ok) {
+            if(response === 200 || response === 201) {
                 setPostErrorText("");
-                setAddPost(false);
+                setUpdatePost(null);
             } else {
-                setPostErrorText("Failed to create post, please try again");
+                setPostErrorText("Failed to update post, please try again");
             }
         }
     }
@@ -119,7 +123,7 @@ export default function CreatePostPage({
             <div className="flex flex-col items-center justify-center bg-white rounded-md p-8">
                 <div className="w-full flex">
                     <div className="flex-1"></div>   
-                    <h1 className="text-2xl font-bold justify-center">Create Post</h1>
+                    <h1 className="text-2xl font-bold justify-center">Update Post</h1>
                     <div className="flex-1"></div>
                 </div>
                 <div className="w-full flex">
@@ -183,7 +187,7 @@ export default function CreatePostPage({
                             <button 
                                 className="bg-gray-200 hover:bg-gray-300 text-red-500 rtart date rounded-md p-4"
                                 onClick={() => {
-                                    setAddPost(false);
+                                    setUpdatePost(null);
                                 }}
                                 >Cancel</button>
                         </div>
@@ -194,9 +198,9 @@ export default function CreatePostPage({
                             <button 
                                 className="bg-green-500 hover:bg-green-600 text-white rounded-md p-4"
                                 onClick={() => {
-                                    createPostFunction();
+                                    updatePostFunction();
                                 }}
-                            >+ Create Post</button>
+                            >Update Post</button>
                         </div>
                     </div>
                 </div>
