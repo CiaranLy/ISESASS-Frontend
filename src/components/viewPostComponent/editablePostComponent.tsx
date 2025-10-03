@@ -4,12 +4,14 @@ export interface EditablePostComponentProps {
     post: Post;
     onEdit?: (post: Post) => void;
     onDelete?: (post: Post) => void;
+    deletePostErrorText?: string;
 }
 
 export function EditablePostComponent({ 
     post,
     onEdit,
     onDelete,
+    deletePostErrorText,
 }: EditablePostComponentProps) {
 
     return (
@@ -53,6 +55,11 @@ export function EditablePostComponent({
                     >
                         Delete
                     </button>
+                </div>
+            )}
+            {deletePostErrorText && (
+                <div className="mt-4">
+                    <p className="text-red-500">{deletePostErrorText}</p>
                 </div>
             )}
         </div>

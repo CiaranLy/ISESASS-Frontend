@@ -4,6 +4,7 @@ import { getPost } from "../CRUD/get_post";
 import { User } from "../Types/User";
 import { PostComponent as PC } from "../components/viewPostComponent/postComponent";
 import { EditablePostComponent as EPC } from "../components/viewPostComponent/editablePostComponent";
+import { deletePost } from "../CRUD/delete_post";
 
 export interface showPostPageProps {
     user: User;
@@ -14,6 +15,8 @@ export default function ShowPostPage({ user }: showPostPageProps) {
     const [userPosts, setUserPosts] = useState<Post[]>([]);
     const [postErrorText, setPostErrorText] = useState<string>("");
     const [viewUserPosts, setViewUserPosts] = useState<boolean>(false);
+
+    const [deletePostErrorText, setDeletePostErrorText] = useState<{[postId: number]: string}>({});
 
     const gatherPosts = useCallback(() => {
         try {
@@ -31,6 +34,17 @@ export default function ShowPostPage({ user }: showPostPageProps) {
 
     useEffect(() => {
         gatherPosts();
+    }, [gatherPosts]);
+
+    const handleDeletePost = useCallback((post: Post) => {
+        deletePost(post.id!).then((response: any) => {
+            if (!response.success) {
+                setDeletePostErrorText(prev => ({...prev, [post.id!]: "Error deleting post, please try again."}));
+            } else {
+                gatherPosts();
+                setDeletePostErrorText(prev => ({...prev, [post.id!]: ""}));
+            }
+        });
     }, [gatherPosts]);
   
     return (
@@ -50,8 +64,9 @@ export default function ShowPostPage({ user }: showPostPageProps) {
                             }}
                             onDelete={(post) => {
                                 console.log('Delete post:', post);
-                                // Add delete functionality here
+                                handleDeletePost(post);
                             }}
+                            deletePostErrorText={deletePostErrorText[post.id!]}
                         />
                      </div>
                  ))}
