@@ -43,7 +43,15 @@ export default function ShowPostPage({ user }: showPostPageProps) {
                 {userPosts.map((post) => (
                      <div key={post.id}>
                          <EPC 
-                            post={post} 
+                            post={post}
+                            onEdit={(post) => {
+                                console.log('Edit post:', post);
+                                // Add edit functionality here
+                            }}
+                            onDelete={(post) => {
+                                console.log('Delete post:', post);
+                                // Add delete functionality here
+                            }}
                         />
                      </div>
                  ))}
