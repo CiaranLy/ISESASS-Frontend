@@ -34,6 +34,11 @@ REM Install dependencies
 echo 📦 Installing dependencies...
 npm install
 
+REM Install global dependencies
+echo 📦 Installing global dependencies...
+npm install -g vercel
+npm install -g kill-port
+
 if %errorlevel% neq 0 (
     echo ❌ Failed to install dependencies
     pause
@@ -41,6 +46,16 @@ if %errorlevel% neq 0 (
 )
 
 echo ✅ Dependencies installed successfully
+
+REM Link to existing Vercel project
+echo 🔗 Linking to Vercel project...
+vercel link --project isesass-frontend --yes
+
+if %errorlevel% equ 0 (
+    echo ✅ Successfully linked to Vercel project
+) else (
+    echo ⚠️  Could not link to Vercel project. You may need to run 'vercel login' first
+)
 
 REM Kill any process on port 3000
 echo 🔧 Checking port 3000...

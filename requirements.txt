@@ -5,33 +5,35 @@
 # - Node.js version 16.0.0 or higher
 # - npm version 8.0.0 or higher
 
-# 2. Additional Tools (Optional)
-# - Vercel CLI for deployment: npm install -g vercel
+# 2. Global Dependencies (Auto-installed by setup scripts)
+# - Vercel CLI: npm install -g vercel
+# - kill-port utility: npm install -g kill-port
 
 # 3. Environment Setup
 # Create .env.local file with:
 REACT_APP_API_URL="Contact teammate"
 
-# 3. Dependencies to install
+# 4. Dependencies to install
 # Run: npm install
 # This will install all dependencies from package.json
 
-# 4. Start the development server
+# 5. Start the development server
 # Run: npm start
 
-# 5. Access the application
+# 6. Access the application
 # Open: http://localhost:3000
 
-# 4. Key Dependencies (Auto-installed with npm install)
+# 7. Key Dependencies (Auto-installed with npm install)
 # - React 19.1.1
+# - React DOM 19.1.1
 # - TypeScript 4.9.5
-# - Tailwind CSS 3.4.17
-# - Radix UI components
-# - Testing libraries
+# - Tailwind CSS 3.4.17 + PostCSS + Autoprefixer
+# - Radix UI: @radix-ui/react-dropdown-menu, @radix-ui/react-slot
+# - Utility libraries: class-variance-authority, clsx, tailwind-merge
+# - Testing libraries: @testing-library/react, jest, web-vitals
 
-# 5. Troubleshooting Commands:
+# 8. Troubleshooting Commands:
 # Clear cache: rm -rf node_modules package-lock.json && npm install
-# Kill port: npx kill-port 3000
+# Kill port: npx kill-port 3000 (or use setup script)
 # Check versions: node --version && npm --version
-# Install Vercel CLI: npm install -g vercel
 # Deploy to Vercel: vercel --yes

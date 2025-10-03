@@ -35,11 +35,26 @@ echo "✅ Environment file created"
 echo "📦 Installing dependencies..."
 npm install
 
+# Install global dependencies
+echo "📦 Installing global dependencies..."
+npm install -g vercel
+npm install -g kill-port
+
 if [ $? -eq 0 ]; then
     echo "✅ Dependencies installed successfully"
 else
     echo "❌ Failed to install dependencies"
     exit 1
+fi
+
+# Link to existing Vercel project
+echo "🔗 Linking to Vercel project..."
+vercel link --project isesass-frontend --yes
+
+if [ $? -eq 0 ]; then
+    echo "✅ Successfully linked to Vercel project"
+else
+    echo "⚠️  Could not link to Vercel project. You may need to run 'vercel login' first"
 fi
 
 # Kill any process on port 3000
